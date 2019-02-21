@@ -23,6 +23,7 @@
     props: {
       model: Object,
       rules: Object,
+      onValidate: Function,
       labelPosition: String,
       labelWidth: String,
       labelSuffix: {
@@ -71,6 +72,13 @@
           this.fields.splice(this.fields.indexOf(field), 1);
         }
       });
+    },
+    mounted(){
+      if (this.onValidate) {
+        this.$nextTick(() => {
+          this.validate(this.onValidate)
+        })
+      }
     },
     methods: {
       resetFields() {
