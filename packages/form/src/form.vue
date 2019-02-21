@@ -1,5 +1,5 @@
 <template>
-  <form class="el-form" :class="[
+  <form @submit="nativeSubmitValidate" class="el-form" :class="[
     labelPosition ? 'el-form--label-' + labelPosition : '',
     { 'el-form--inline': inline }
   ]">
@@ -99,6 +99,11 @@
         fields.forEach(field => {
           field.clearValidate();
         });
+      },
+      nativeSubmitValidate() {
+        if (this.onValidate) {
+          this.validate(this.onValidate)
+        }
       },
       validate(callback) {
         if (!this.model) {
