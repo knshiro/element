@@ -73,13 +73,6 @@
         }
       });
     },
-    mounted(){
-      if (this.onValidate) {
-        this.$nextTick(() => {
-          this.validate(this.onValidate)
-        })
-      }
-    },
     methods: {
       resetFields() {
         if (!this.model) {
